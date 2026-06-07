@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شهادة المتعلم الذكي</title>
+<meta property="og:title" content="شهادة المتعلم الذكي — AI Learner Certificate">
+<meta property="og:description" content="اكتشف كيف تفكر مع الذكاء الاصطناعي">
+<meta name="twitter:card" content="summary">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,600;1,300;1,600&family=Sora:wght@300;400;500;600&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F2F5F9;--surface:#FFFFFF;--surface2:#E8EDF4;--surface3:#F8FAFC;
+  --accent:#1A5FA8;--accent-l:#E6EFF8;--accent-d:#0D3A6B;
+  --gold:#9A6518;--gold-l:#FDF3E0;
+  --green:#1A7A52;--green-l:#E3F5ED;
+  --red:#B83030;--red-l:#FDECEA;
+  --text:#111827;--sub:#4B5A6B;--dim:#8A9AAE;
+  --border:#D0D8E4;--border2:#E8EEF6;
+  --r:16px;--r-sm:10px;--r-xs:7px;
+  --sh:0 1px 4px rgba(17,24,39,.08);
+  --sh-md:0 4px 20px rgba(17,24,39,.10);
+  --sh-lg:0 8px 40px rgba(17,24,39,.14);
+  --fa:'Cairo','IBM Plex Sans Arabic',sans-serif;
+  --fe:'Sora',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:var(--fa);font-size:15px;line-height:1.8;direction:rtl;min-height:100vh;}
+body.en{font-family:var(--fe);direction:ltr;}
+
+/* TOP BAR */
+.top-bar{background:var(--surface);border-bottom:1px solid var(--border2);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:0;z-index:100;box-shadow:var(--sh);}
+.top-logo{font-size:13px;font-weight:700;color:var(--accent);}
+.top-back{font-size:12px;color:var(--sub);background:none;border:1px solid var(--border);border-radius:20px;padding:5px 13px;cursor:pointer;transition:all .18s;font-family:var(--fa);}
+body.en .top-back{font-family:var(--fe);}
+.top-back:hover{border-color:var(--accent);color:var(--accent);}
+
+/* LOADING */
+.loading{max-width:480px;margin:80px auto;padding:0 16px;text-align:center;}
+.loading-icon{font-size:48px;margin-bottom:16px;animation:spin 1.5s linear infinite;display:inline-block;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.loading-t{font-size:18px;font-weight:700;margin-bottom:6px;}
+.loading-s{font-size:13px;color:var(--sub);}
+
+/* ERROR */
+.error-state{max-width:480px;margin:80px auto;padding:0 16px;text-align:center;}
+.error-icon{font-size:48px;margin-bottom:16px;}
+.error-t{font-size:18px;font-weight:700;color:var(--red);margin-bottom:8px;}
+.error-s{font-size:13px;color:var(--sub);margin-bottom:20px;line-height:1.7;}
+.btn-back{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;border:none;border-radius:var(--r-sm);padding:11px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--fa);text-decoration:none;}
+body.en .btn-back{font-family:var(--fe);}
+
+/* CERTIFICATE */
+.cert{max-width:660px;margin:0 auto;padding:20px 16px 60px;display:none;}
+
+/* SECTION A — IDENTITY CARD */
+.id-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--sh-lg);margin-bottom:14px;
+  position:relative;
+}
+.id-card-glow{position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(26,95,168,.07) 0%,transparent 70%);pointer-events:none;}
+body.en .id-card-glow{right:auto;left:-40px;}
+.id-inner{padding:24px 20px 20px;}
+
+.ai-badge{display:inline-flex;align-items:center;gap:8px;border-radius:20px;padding:4px 13px;font-size:11px;font-weight:700;margin-bottom:14px;font-family:var(--fe);}
+.ai-ico{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;font-family:'Sora',sans-serif;}
+
+.comp-pill{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:3px 11px;font-size:10px;font-weight:700;margin-bottom:16px;font-family:var(--fe);letter-spacing:.04em;}
+.pill-starter{background:var(--gold-l);color:var(--gold);border:1px solid rgba(154,101,24,.2);}
+.pill-developing{background:var(--accent-l);color:var(--accent);border:1px solid rgba(26,95,168,.2);}
+.pill-full{background:var(--green-l);color:var(--green);border:1px solid rgba(26,122,82,.2);}
+
+.prof-lbl{font-size:10px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;font-family:var(--fe);}
+.prof-title{font-size:clamp(26px,6vw,42px);font-weight:800;line-height:1.15;margin-bottom:12px;color:var(--text);}
+body.en .prof-title{font-family:'Fraunces',serif;font-weight:600;}
+.prof-title em{color:var(--accent);font-style:normal;}
+body.en .prof-title em{font-style:italic;}
+
+.cog-sig{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.sig-w{font-size:11px;letter-spacing:.06em;color:var(--gold);font-weight:700;text-transform:uppercase;}
+.sig-sep{color:var(--dim);}
+
+.insight-box{
+  background:var(--accent-l);
+  border-right:3px solid var(--accent);
+  padding:13px 16px;
+  border-radius:0 var(--r-sm) var(--r-sm) 0;
+  margin-bottom:24px;
+  font-size:clamp(13px,3.5vw,16px);
+  color:var(--text);line-height:1.65;
+}
+body.en .insight-box{border-right:none;border-left:3px solid var(--accent);border-radius:var(--r-sm) 0 0 var(--r-sm);}
+body.en .insight-box{font-family:'Fraunces',serif;font-style:italic;font-weight:300;}
+
+/* RADAR + STAT */
+.card-bottom{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:440px){.card-bottom{grid-template-columns:180px 1fr;align-items:center;}}
+body.en .card-bottom{direction:ltr;}
+.radar-wrap{display:flex;justify-content:center;}
+
+.stat-side{display:flex;flex-direction:column;gap:10px;}
+.stat-block{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);padding:14px 16px;}
+.stat-num{font-family:'Fraunces',serif;font-size:clamp(30px,6vw,40px);font-weight:600;color:var(--gold);line-height:1;margin-bottom:4px;}
+body.en .stat-num{font-family:var(--fe);font-weight:700;}
+.stat-lbl{font-size:11px;color:var(--sub);line-height:1.5;}
+
+.comp-bar-wrap{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r-sm);padding:12px 14px;}
+.comp-bar-lbl{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;font-family:var(--fe);}
+.comp-bar-lbl span:last-child{color:var(--accent);font-weight:700;}
+.bar-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:3px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1) .3s;}
+
+/* CARD FOOTER */
+.id-foot{padding:14px 20px;border-top:1px solid var(--border2);background:var(--surface3);}
+.cert-date{font-size:11px;color:var(--dim);margin-bottom:12px;font-family:var(--fe);}
+
+/* SHARE BUTTONS */
+.cert-share{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(min-width:380px){.cert-share{grid-template-columns:repeat(4,1fr);}}
+.cs-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 8px;border-radius:var(--r-sm);border:none;cursor:pointer;font-size:12px;font-weight:700;font-family:var(--fa);transition:opacity .18s,transform .1s;text-decoration:none;box-shadow:var(--sh);}
+body.en .cs-btn{font-family:var(--fe);}
+.cs-btn:hover{opacity:.85;}
+.cs-btn:active{transform:scale(.97);}
+.cs-li{background:#0A66C2;color:#fff;}
+.cs-fb{background:#1877F2;color:#fff;}
+.cs-wa{background:#25D366;color:#fff;}
+.cs-cp{background:var(--surface);color:var(--text);border:1.5px solid var(--border);}
+
+/* SECTION B */
+.section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin-bottom:12px;}
+.sec-head{padding:13px 18px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:10px;background:var(--surface3);}
+.sec-letter{width:26px;height:26px;background:var(--accent-l);border:1px solid rgba(26,95,168,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0;font-family:monospace;}
+.sec-title{font-size:15px;font-weight:700;}
+.sec-sub{font-size:11px;color:var(--dim);margin-inline-start:auto;}
+
+.dims-grid{display:grid;grid-template-columns:1fr;}
+@media(min-width:480px){.dims-grid{grid-template-columns:1fr 1fr;}}
+.dim-card{padding:16px 18px;border-bottom:1px solid var(--border2);}
+@media(min-width:480px){
+  .dim-card:nth-child(odd){border-inline-end:1px solid var(--border2);}
+  .dim-card:last-child,.dim-card:nth-last-child(2):nth-child(odd){border-bottom:none;}
+}
+.dim-card:last-child{border-bottom:none;}
+.dim-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.dim-name{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.dim-label{font-size:15px;font-weight:700;line-height:1.2;}
+.conf{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px;flex-shrink:0;white-space:nowrap;}
+.conf-high{background:var(--green-l);color:var(--green);border:1px solid rgba(26,122,82,.2);}
+.conf-moderate{background:var(--gold-l);color:var(--gold);border:1px solid rgba(154,101,24,.2);}
+.conf-low{background:var(--surface2);color:var(--sub);border:1px solid var(--border);}
+.conf-insufficient{background:var(--surface2);color:var(--dim);border:1px solid var(--border2);}
+.dim-finding{font-size:12px;color:var(--sub);line-height:1.6;margin-bottom:8px;}
+.dim-evidence{font-size:11px;color:var(--dim);border-inline-start:2px solid var(--border);padding-inline-start:10px;font-style:italic;line-height:1.5;}
+
+/* SECTION C + D */
+.sec-body{padding:16px 18px;}
+.sec-body p{font-size:12px;color:var(--sub);line-height:1.75;margin-bottom:10px;}
+.sec-body p:last-child{margin-bottom:0;}
+.sec-body strong{color:var(--text);font-weight:700;}
+.comp-list{display:flex;flex-direction:column;gap:7px;}
+.comp-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--sub);}
+.comp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.comp-dot.done{background:var(--green);}
+.comp-dot.pending{background:var(--border);border:1px solid var(--dim);}
+
+/* RADAR SVG */
+.rg{fill:none;stroke:rgba(17,24,39,.06);stroke-width:1;}
+.ra{stroke:rgba(17,24,39,.07);stroke-width:.5;}
+@keyframes drawR{to{stroke-dashoffset:0;}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-logo" id="top-logo">شهادة المتعلم الذكي</div>
+  <a href="index.html" class="top-back" id="top-back">← العودة</a>
+</div>
+
+<!-- LOADING STATE -->
+<div class="loading" id="loadingState">
+  <div class="loading-icon">⚙️</div>
+  <div class="loading-t" id="load-t">جاري تحميل شهادتك...</div>
+  <div class="loading-s" id="load-s">لحظة واحدة</div>
+</div>
+
+<!-- ERROR STATE -->
+<div class="error-state" id="errorState" style="display:none">
+  <div class="error-icon">⚠️</div>
+  <div class="error-t" id="err-t">تعذّر تحميل الشهادة</div>
+  <div class="error-s" id="err-s"></div>
+  <a href="index.html" class="btn-back" id="err-btn">← العودة للصفحة الرئيسية</a>
+</div>
+
+<!-- CERTIFICATE -->
+<div class="cert" id="cert">
+
+  <!-- A: IDENTITY CARD -->
+  <div class="id-card">
+    <div class="id-card-glow"></div>
+    <div class="id-inner">
+      <div id="ai-badge-wrap"></div>
+      <div id="comp-pill-wrap"></div>
+      <div class="prof-lbl" id="prof-lbl">ملفك الشخصي كمتعلم بالذكاء الاصطناعي</div>
+      <div class="prof-title" id="prof-title"></div>
+      <div class="cog-sig" id="cog-sig"></div>
+      <div class="insight-box" id="insight-box"></div>
+      <div class="card-bottom">
+        <div class="radar-wrap">
+          <svg width="180" height="180" viewBox="-14 -14 228 228" overflow="visible">
+            <polygon class="rg" points="100,16 165,57 165,143 100,184 35,143 35,57"/>
+            <polygon class="rg" points="100,37 149,70 149,130 100,163 51,130 51,70"/>
+            <polygon class="rg" points="100,58 133,83 133,117 100,142 67,117 67,83"/>
+            <polygon class="rg" points="100,79 117,90 117,110 100,121 83,110 83,90"/>
+            <line class="ra" x1="100" y1="100" x2="100" y2="16"/>
+            <line class="ra" x1="100" y1="100" x2="165" y2="57"/>
+            <line class="ra" x1="100" y1="100" x2="165" y2="143"/>
+            <line class="ra" x1="100" y1="100" x2="100" y2="184"/>
+            <line class="ra" x1="100" y1="100" x2="35" y2="143"/>
+            <line class="ra" x1="100" y1="100" x2="35" y2="57"/>
+            <polygon id="r-poly" fill="rgba(26,95,168,.1)" stroke="#1A5FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="700" stroke-dashoffset="700" points="100,100 100,100 100,100 100,100 100,100 100,100" style="animation:drawR 1.4s ease .2s forwards;"/>
+            <circle id="rd0" cx="100" cy="100" r="4" fill="#1A5FA8" opacity="0" style="transition:opacity .3s .8s;"/>
+            <circle id="rd1" cx="100" cy="100" r="4" fill="#1A5FA8" opacity="0" style="transition:opacity .3s .9s;"/>
+            <circle id="rd2" cx="100" cy="100" r="4" fill="#1A5FA8" opacity="0" style="transition:opacity .3s 1s;"/>
+            <circle id="rd3" cx="100" cy="100" r="4" fill="#1A5FA8" opacity="0" style="transition:opacity .3s 1.1s;"/>
+            <circle id="rd4" cx="100" cy="100" r="4" fill="#1A5FA8" opacity="0" style="transition:opacity .3s 1.2s;"/>
+            <circle id="rd5" cx="100" cy="100" r="4" fill="#1A5FA8" opacity="0" style="transition:opacity .3s 1.3s;"/>
+            <text id="rl0" x="100" y="5"   text-anchor="middle" font-size="9" fill="#8A9AAE" font-family="Sora,sans-serif"></text>
+            <text id="rl1" x="182" y="56"  text-anchor="start"  font-size="9" fill="#8A9AAE" font-family="Sora,sans-serif"></text>
+            <text id="rl2" x="182" y="147" text-anchor="start"  font-size="9" fill="#8A9AAE" font-family="Sora,sans-serif"></text>
+            <text id="rl3" x="100" y="202" text-anchor="middle" font-size="9" fill="#8A9AAE" font-family="Sora,sans-serif"></text>
+            <text id="rl4" x="18"  y="147" text-anchor="end"    font-size="9" fill="#8A9AAE" font-family="Sora,sans-serif"></text>
+            <text id="rl5" x="18"  y="56"  text-anchor="end"    font-size="9" fill="#8A9AAE" font-family="Sora,sans-serif"></text>
+          </svg>
+        </div>
+        <div class="stat-side">
+          <div class="stat-block">
+            <div class="stat-num" id="stat-num">—</div>
+            <div class="stat-lbl" id="stat-lbl"></div>
+          </div>
+          <div class="comp-bar-wrap">
+            <div class="comp-bar-lbl">
+              <span id="cbl">اكتمال الملف</span>
+              <span id="cbv">—</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="id-foot">
+      <div class="cert-date" id="cert-date"></div>
+      <div class="cert-share">
+        <a class="cs-btn cs-li" id="s-li" href="#" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span id="s-li-t">LinkedIn</span></a>
+        <a class="cs-btn cs-fb" id="s-fb" href="#" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span id="s-fb-t">Facebook</span></a>
+        <a class="cs-btn cs-wa" id="s-wa" href="#" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg><span id="s-wa-t">WhatsApp</span></a>
+        <button class="cs-btn cs-cp" onclick="copyLink()"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span id="s-cp-t">نسخ الرابط</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- B: DIMENSIONS -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-letter">B</div>
+      <div class="sec-title" id="sec-b">تفصيل الأبعاد</div>
+      <div class="sec-sub" id="sec-b-s">ما رصده الذكاء الاصطناعي</div>
+    </div>
+    <div class="dims-grid" id="dims-grid"></div>
+  </div>
+
+  <!-- C: METHODOLOGY -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-letter">C</div>
+      <div class="sec-title" id="sec-c">ملاحظة المنهجية</div>
+      <div class="sec-sub" id="sec-c-s">الشفافية</div>
+    </div>
+    <div class="sec-body" id="method-body"></div>
+  </div>
+
+  <!-- D: COMPLETENESS -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-letter">D</div>
+      <div class="sec-title" id="sec-d">اكتمال الملف</div>
+    </div>
+    <div class="sec-body">
+      <div id="comp-title" style="font-size:14px;font-weight:700;margin-bottom:4px;"></div>
+      <div id="comp-note" style="font-size:12px;color:var(--sub);margin-bottom:14px;"></div>
+      <div class="comp-list" id="comp-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const CERT_URL = window.location.href;
+const isAR = () => !document.body.classList.contains('en');
+
+const L = {
+  ar:{
+    topLogo:'شهادة المتعلم الذكي', topBack:'← العودة',
+    loadT:'جاري تحميل شهادتك...', loadS:'لحظة واحدة',
+    errT:'تعذّر تحميل الشهادة', errBtn:'← العودة للصفحة الرئيسية',
+    errNoData:'لا توجد بيانات في الرابط. تأكد من نسخ الرابط كاملاً من الذكاء الاصطناعي.',
+    errBadData:'تعذّر قراءة بيانات الشهادة. الرابط قد يكون غير مكتمل.',
+    profLbl:'ملفك الشخصي كمتعلم بالذكاء الاصطناعي',
+    cbl:'اكتمال الملف',
+    pStarter:'مبتدئ', pDev:'في التطور', pFull:'مكتمل',
+    genWith:'أُولِّد بواسطة',
+    secB:'تفصيل الأبعاد', secBS:'ما رصده الذكاء الاصطناعي',
+    secC:'ملاحظة المنهجية', secCS:'الشفافية',
+    secD:'اكتمال الملف',
+    cTitleS:'ملف مبتدئ — الذاكرة محدودة',
+    cTitleD:'ملف في التطور',
+    cTitleF:'ملف مكتمل',
+    cNote:'كلما تحدثت أكثر مع الذكاء الاصطناعي، كلما أصبحت شهادتك أدق وأكثر عمقاً.',
+    confH:'عالٍ', confM:'متوسط', confL:'منخفض', confI:'بيانات غير كافية',
+    liT:'LinkedIn', fbT:'Facebook', waT:'WhatsApp', cpT:'نسخ الرابط',
+    methodology:'أُولِّدت هذه الشهادة بواسطة ذكاء اصطناعي يُحلل ذاكرته عن المستخدم من المحادثات السابقة — وليس معرفتك أو ذكاءك أو قدرتك الأكاديمية. <strong>لا تقيس ما تعرفه. تعكس كيف تفكر.</strong> الأبعاد الستة هي فئات سلوكية ملاحظة وليست سمات شخصية ثابتة. ملفك سيتطور كلما اغتنت ذاكرة الذكاء الاصطناعي عنك. <strong>أداة غير رسمية مصممة للتأمل والمتعة فقط.</strong>',
+    shareMsg:'🧠 حصلت على شهادة المتعلم الذكي — اكتشف كيف تفكر مع الذكاء الاصطناعي',
+  },
+  en:{
+    topLogo:'AI Learner Certificate', topBack:'← Back',
+    loadT:'Loading your certificate...', loadS:'One moment',
+    errT:'Could not load certificate', errBtn:'← Back to main page',
+    errNoData:'No data found in the link. Make sure you copied the full link from your AI tool.',
+    errBadData:'Could not read certificate data. The link may be incomplete.',
+    profLbl:'Your AI Learner Profile',
+    cbl:'Profile completeness',
+    pStarter:'Starter', pDev:'Developing', pFull:'Complete',
+    genWith:'Generated with',
+    secB:'Dimension Breakdown', secBS:'What the AI observed',
+    secC:'Methodology Note', secCS:'Transparency',
+    secD:'Profile Completeness',
+    cTitleS:'Starter profile — limited memory',
+    cTitleD:'Developing profile',
+    cTitleF:'Complete profile',
+    cNote:'The more you talk with AI, the more accurate and complete your certificate becomes.',
+    confH:'High', confM:'Moderate', confL:'Low', confI:'Insufficient data',
+    liT:'LinkedIn', fbT:'Facebook', waT:'WhatsApp', cpT:'Copy link',
+    methodology:'This certificate was generated by an AI analysing its memory of the user from past conversations — not knowledge, intelligence, or academic ability. <strong>It does not measure what you know. It reflects how you think.</strong> The six dimensions are observational behavioral categories, not fixed personality types. Your profile will deepen as the AI\'s memory of you grows. <strong>Unofficial tool for reflection and enjoyment only.</strong>',
+    shareMsg:'🧠 I got my AI Learner Certificate — discover how you think with AI',
+  }
+};
+
+const aiBadgeColors={
+  claude: {bg:'#FEF0EB',color:'#C06040',border:'rgba(192,96,64,.2)',ic:'#D97757'},
+  chatgpt:{bg:'#E6F7F2',color:'#0A7A5F',border:'rgba(10,122,95,.2)',ic:'#10A37F'},
+  gemini: {bg:'#EAF2FE',color:'#2A5FC0',border:'rgba(42,95,192,.2)',ic:'#4285F4'},
+  copilot:{bg:'#E8F2FB',color:'#0068B4',border:'rgba(0,104,180,.2)',ic:'#0078D4'},
+  mistral:{bg:'#FFF0E6',color:'#C05800',border:'rgba(192,88,0,.2)',ic:'#FF7000'},
+  grok:   {bg:'#E8F5FE',color:'#1280BE',border:'rgba(18,128,190,.2)',ic:'#1DA1F2'},
+};
+const compMap={starter:35,developing:70,full:100};
+const compColors={starter:'pill-starter',developing:'pill-developing',full:'pill-full'};
+
+function radarPt(score,axis){
+  const angles=[-90,-30,30,90,150,210];
+  const r=(score/5)*84;
+  const rad=angles[axis]*Math.PI/180;
+  return{x:100+r*Math.cos(rad),y:100+r*Math.sin(rad)};
+}
+
+function showError(msg){
+  const lbl=isAR()?L.ar:L.en;
+  document.getElementById('loadingState').style.display='none';
+  const es=document.getElementById('errorState');
+  es.style.display='block';
+  document.getElementById('err-t').textContent=lbl.errT;
+  document.getElementById('err-s').textContent=msg;
+  document.getElementById('err-btn').textContent=lbl.errBtn;
+}
+
+function copyLink(){
+  const s=document.getElementById('s-cp-t');const p=s.textContent;
+  const ok=()=>{s.textContent=isAR()?'✓ تم':'✓ Copied';setTimeout(()=>s.textContent=p,2500);};
+  try{navigator.clipboard.writeText(CERT_URL).then(ok).catch(()=>{fbCopy()&&ok();});}catch(e){fbCopy()&&ok();}
+}
+function fbCopy(){try{const a=document.createElement('textarea');a.value=CERT_URL;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.focus();a.select();const ok=document.execCommand('copy');document.body.removeChild(a);return ok;}catch(e){return false;}}
+
+function render(d){
+  const lang=d.language||'ar';
+  document.documentElement.setAttribute('lang',lang);
+  document.documentElement.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+  document.body.classList.toggle('en',lang==='en');
+  const lbl=lang==='ar'?L.ar:L.en;
+
+  // static labels
+  document.getElementById('top-logo').textContent=lbl.topLogo;
+  document.getElementById('top-back').textContent=lbl.topBack;
+  document.getElementById('prof-lbl').textContent=lbl.profLbl;
+  document.getElementById('cbl').textContent=lbl.cbl;
+  document.getElementById('sec-b').textContent=lbl.secB;
+  document.getElementById('sec-b-s').textContent=lbl.secBS;
+  document.getElementById('sec-c').textContent=lbl.secC;
+  document.getElementById('sec-c-s').textContent=lbl.secCS;
+  document.getElementById('sec-d').textContent=lbl.secD;
+  document.getElementById('s-li-t').textContent=lbl.liT;
+  document.getElementById('s-fb-t').textContent=lbl.fbT;
+  document.getElementById('s-wa-t').textContent=lbl.waT;
+  document.getElementById('s-cp-t').textContent=lbl.cpT;
+
+  const comp=(d.completeness||'developing').toLowerCase();
+  const aiKey=(d.ai_tool||'claude').toLowerCase().replace(/[^a-z]/g,'');
+  const aiStyle=aiBadgeColors[aiKey]||aiBadgeColors.claude;
+
+  // AI BADGE
+  document.getElementById('ai-badge-wrap').innerHTML=
+    `<div class="ai-badge" style="background:${aiStyle.bg};color:${aiStyle.color};border:1px solid ${aiStyle.border}">
+      <div class="ai-ico" style="background:${aiStyle.ic};color:#fff">${(d.ai_tool||'AI').substring(0,2)}</div>
+      ${lbl.genWith} ${d.ai_tool||'AI'}
+    </div>`;
+
+  // COMPLETENESS PILL
+  const pillClass=compColors[comp]||'pill-developing';
+  const pillKey='p'+comp.charAt(0).toUpperCase()+comp.slice(1);
+  const pillText=lbl[pillKey]||comp;
+  document.getElementById('comp-pill-wrap').innerHTML=
+    `<div class="comp-pill ${pillClass}">${pillText}</div>`;
+
+  // TITLE
+  const parts=(d.profile_title||'').split(' ');
+  const mid=Math.ceil(parts.length/2);
+  document.getElementById('prof-title').innerHTML=
+    parts.slice(0,mid).join(' ')+(parts.slice(mid).length?' <em>'+parts.slice(mid).join(' ')+'</em>':'');
+
+  // COGNITIVE SIGNATURE
+  const sig=document.getElementById('cog-sig');sig.innerHTML='';
+  (d.cognitive_signature||[]).forEach((w,i)=>{
+    if(i>0){const s=document.createElement('span');s.className='sig-sep';s.textContent='·';sig.appendChild(s);}
+    const s=document.createElement('span');s.className='sig-w';s.textContent=w;sig.appendChild(s);
+  });
+
+  // INSIGHT
+  document.getElementById('insight-box').textContent=d.insight_line||'';
+
+  // RADAR
+  const scores=d.radar_scores||[3,3,3,3,3,3];
+  const shortNames=(d.dimensions||[]).map(dim=>{
+    const n=dim.name||'';
+    return lang==='ar'?n.substring(0,5):n.split(' ').pop().substring(0,5);
+  });
+  const pts=scores.map((s,i)=>radarPt(s,i));
+  document.getElementById('r-poly').setAttribute('points',pts.map(p=>p.x+','+p.y).join(' '));
+  pts.forEach((p,i)=>{
+    const d2=document.getElementById('rd'+i);
+    d2.setAttribute('cx',p.x);d2.setAttribute('cy',p.y);d2.style.opacity='1';
+    const l=document.getElementById('rl'+i);
+    if(shortNames[i])l.textContent=shortNames[i];
+  });
+
+  // STAT
+  const statRaw=d.signature_stat||'';
+  const m=statRaw.match(/\d+/);
+  document.getElementById('stat-num').textContent=m?m[0]:'✦';
+  document.getElementById('stat-lbl').textContent=statRaw;
+
+  // BAR
+  const pct=compMap[comp]||70;
+  document.getElementById('cbv').textContent=pillText;
+  setTimeout(()=>{document.getElementById('bar-fill').style.width=pct+'%';},200);
+
+  // DATE
+  document.getElementById('cert-date').textContent=
+    new Date().toLocaleDateString(lang==='ar'?'ar-SA':'en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+  // SHARE URLS
+  const shareMsg=lbl.shareMsg;
+  document.getElementById('s-li').href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(CERT_URL);
+  document.getElementById('s-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(CERT_URL)+'&quote='+encodeURIComponent(shareMsg);
+  document.getElementById('s-wa').href='https://wa.me/?text='+encodeURIComponent(shareMsg+'\n'+CERT_URL);
+
+  // DIMENSIONS
+  const grid=document.getElementById('dims-grid');grid.innerHTML='';
+  const confMap={high:'conf-high',moderate:'conf-moderate',low:'conf-low',insufficient:'conf-insufficient',insufficientdata:'conf-insufficient'};
+  const confLabels={high:lbl.confH,moderate:lbl.confM,low:lbl.confL,insufficient:lbl.confI,insufficientdata:lbl.confI};
+  (d.dimensions||[]).forEach(dim=>{
+    const ck=(dim.confidence||'low').toLowerCase().replace(/\s/g,'');
+    const cc=confMap[ck]||'conf-low';
+    const cl=confLabels[ck]||dim.confidence;
+    grid.innerHTML+=`<div class="dim-card">
+      <div class="dim-top">
+        <div><div class="dim-name">${dim.name||''}</div><div class="dim-label">${dim.label||''}</div></div>
+        <span class="conf ${cc}">${cl}</span>
+      </div>
+      <div class="dim-finding">${dim.finding||''}</div>
+      <div class="dim-evidence">${dim.evidence||''}</div>
+    </div>`;
+  });
+
+  // METHODOLOGY
+  document.getElementById('method-body').innerHTML=
+    '<p>'+(d.methodology_note||lbl.methodology)+'</p>'+
+    '<p>'+lbl.methodology+'</p>';
+
+  // COMPLETENESS
+  const cTitleKey='cTitle'+comp.charAt(0).toUpperCase()+comp.slice(1);
+  document.getElementById('comp-title').textContent=lbl[cTitleKey]||lbl.cTitleD;
+  document.getElementById('comp-note').textContent=lbl.cNote;
+  const cl2=document.getElementById('comp-list');cl2.innerHTML='';
+  (d.dimensions||[]).forEach(dim=>{
+    const done=dim.confidence==='high'||dim.confidence==='moderate';
+    cl2.innerHTML+=`<div class="comp-item">
+      <div class="comp-dot ${done?'done':'pending'}"></div>
+      <span>${dim.name||''} — ${dim.label||''}</span>
+    </div>`;
+  });
+
+  // SHOW
+  document.getElementById('loadingState').style.display='none';
+  const certEl=document.getElementById('cert');
+  certEl.style.display='block';
+  certEl.style.opacity='0';
+  certEl.style.transform='translateY(10px)';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    certEl.style.transition='opacity .6s ease, transform .6s ease';
+    certEl.style.opacity='1';
+    certEl.style.transform='translateY(0)';
+  }));
+}
+
+// ── ENCODING: Browser-safe UTF-8 aware Base64 (works for Arabic and all Unicode) ──
+function encodeData(jsonObj){
+  const str = JSON.stringify(jsonObj);
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+
+function decodeData(b64){
+  const fixed = b64.replace(/-/g,'+').replace(/_/g,'/');
+  const padded = fixed + '='.repeat((4 - fixed.length % 4) % 4);
+  const bin = atob(padded);
+  const bytes = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+function buildShareURL(jsonObj){
+  const base = window.location.origin + window.location.pathname;
+  return base + '?data=' + encodeData(jsonObj);
+}
+
+// ── PASTE MODE: shown when no ?data in URL ──
+let _parsedData=null, _shareURL='';
+
+function showPasteMode(lang){
+  document.getElementById('loadingState').style.display='none';
+  const isA=lang==='ar';
+  document.documentElement.setAttribute('lang',lang);
+  document.documentElement.setAttribute('dir',isA?'rtl':'ltr');
+  document.body.classList.toggle('en',!isA);
+  const wrap=document.createElement('div');
+  wrap.style.cssText='max-width:560px;margin:32px auto;padding:0 16px;';
+  wrap.innerHTML=`
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(17,24,39,.1);">
+      <div style="padding:18px 20px;background:linear-gradient(135deg,var(--accent-l),var(--surface));border-bottom:1px solid var(--border2);">
+        <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px;">${isA?'الصق بيانات JSON هنا':'Paste JSON data here'}</div>
+        <div style="font-size:11px;color:var(--sub);">${isA?'انسخ النص الكامل الذي أخرجه الذكاء الاصطناعي والصقه أدناه':'Copy the full JSON output from your AI tool and paste it below'}</div>
+      </div>
+      <textarea id="jsonPaste" style="width:100%;min-height:160px;border:none;outline:none;padding:16px 20px;font-family:Sora,monospace;font-size:12px;color:var(--text);background:#FAFBFC;line-height:1.7;direction:ltr;text-align:left;resize:vertical;" placeholder='{"profile_title":"...","dimensions":[...]}'></textarea>
+      <div id="perr" style="display:none;padding:10px 20px;font-size:12px;color:var(--red);background:var(--red-l);"></div>
+      <div style="padding:12px 16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="genFromPaste()" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:13px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--fa);">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          ${isA?'إنشاء الشهادة وتوليد الرابط':'Generate Certificate & Link'}
+        </button>
+        <a href="index.html" style="display:flex;align-items:center;justify-content:center;padding:13px 16px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--sub);font-size:13px;font-weight:600;text-decoration:none;">${isA?'← العودة':'← Back'}</a>
+      </div>
+    </div>
+    <div id="urlbox" style="display:none;margin-top:12px;background:var(--green-l);border:1px solid rgba(26,122,82,.2);border-radius:10px;padding:14px 18px;">
+      <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;font-family:Sora,sans-serif;">${isA?'✅ رابط شهادتك الدائم':'✅ Your permanent certificate link'}</div>
+      <div id="urltext" style="font-size:11px;color:var(--sub);word-break:break-all;font-family:monospace;background:var(--surface);padding:8px 12px;border-radius:6px;margin-bottom:10px;direction:ltr;"></div>
+      <button onclick="cpURL()" id="cpurlbtn" style="background:var(--green);color:#fff;border:none;border-radius:10px;padding:9px 18px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--fa);">${isA?'نسخ الرابط':'Copy Link'}</button>
+    </div>`;
+  document.body.appendChild(wrap);
+}
+
+function genFromPaste(){
+  const raw=document.getElementById('jsonPaste').value.trim();
+  const err=document.getElementById('perr');
+  err.style.display='none';
+  if(!raw){err.textContent=isAR()?'الرجاء لصق البيانات أولاً.':'Please paste data first.';err.style.display='block';return;}
+  try{_parsedData=JSON.parse(raw.replace(/```json/gi,'').replace(/```/g,'').trim());}
+  catch(e){err.textContent=(isAR()?'خطأ في البيانات: ':'Data error: ')+e.message;err.style.display='block';return;}
+  _shareURL=buildShareURL(_parsedData);
+  document.getElementById('urltext').textContent=_shareURL;
+  document.getElementById('urlbox').style.display='block';
+  render(_parsedData);
+  setTimeout(()=>{
+    const msg=isAR()?'🧠 حصلت على شهادة المتعلم الذكي — اكتشف كيف تفكر مع الذكاء الاصطناعي':'🧠 I got my AI Learner Certificate — discover how you think with AI';
+    document.getElementById('s-li').href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(_shareURL);
+    document.getElementById('s-fb').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(_shareURL)+'&quote='+encodeURIComponent(msg);
+    document.getElementById('s-wa').href='https://wa.me/?text='+encodeURIComponent(msg+'\n'+_shareURL);
+  },400);
+}
+
+function cpURL(){
+  const btn=document.getElementById('cpurlbtn');const p=btn.textContent;
+  const ok=()=>{btn.textContent=isAR()?'✓ تم':'✓ Copied';setTimeout(()=>btn.textContent=p,2500);};
+  try{navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(_shareURL).then(ok):ok(fbCP());}catch(e){fbCP()&&ok();}
+}
+function fbCP(){try{const a=document.createElement('textarea');a.value=_shareURL;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.focus();a.select();const r=document.execCommand('copy');document.body.removeChild(a);return r;}catch(e){return false;}}
+
+// ── MAIN: DUAL MODE ──
+(function init(){
+  const params=new URLSearchParams(window.location.search);
+  const raw=params.get('data');
+  if(!raw){
+    showPasteMode(navigator.language.startsWith('ar')?'ar':'en');
+    return;
+  }
+  try{
+    render(decodeData(raw));
+  }catch(e){
+    const lang=navigator.language.startsWith('ar')?'ar':'en';
+    document.documentElement.setAttribute('lang',lang);
+    document.documentElement.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+    document.body.classList.toggle('en',lang==='en');
+    showError((lang==='ar'?L.ar.errBadData:L.en.errBadData)+' ('+e.message+')');
+  }
+})();
+</script>
+</body>
+</html>
