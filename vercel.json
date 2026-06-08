@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/c/:id",
+      "destination": "/certificate.html?id=:id"
+    }
+  ]
+}

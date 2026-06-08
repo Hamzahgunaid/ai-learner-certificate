@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindScore — إحصائيات المجتمع</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1A1A3E;--blue:#4A9FE8;--purple:#6B35D9;
+  --blue-l:#EBF4FD;--purple-l:#F0EAFC;
+  --grad:linear-gradient(135deg,#4A9FE8,#6B35D9);
+  --white:#FFF;--paper:#F6F8FC;--surface:#FFF;
+  --border:#E2E8F0;--border2:#EEF2F8;
+  --text:#1A1A3E;--sub:#5A6A8A;--dim:#94A3B8;
+  --green:#16A34A;--green-l:#DCFCE7;
+  --r:14px;--rs:9px;
+  --sh:0 1px 4px rgba(26,26,62,.07);
+  --sh2:0 4px 20px rgba(26,26,62,.10);
+  --sh3:0 8px 40px rgba(26,26,62,.14);
+  --fa:'Cairo','IBM Plex Sans Arabic',sans-serif;
+  --fe:'Plus Jakarta Sans',sans-serif}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--text);font-family:var(--fa);font-size:15px;line-height:1.8;direction:rtl;min-height:100vh}
+body.en{font-family:var(--fe);direction:ltr}
+nav{background:var(--navy);padding:0 18px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(26,26,62,.3)}
+.nav-brand{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-seal{width:28px;height:28px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;font-family:var(--fe)}
+.nav-name{font-size:14px;font-weight:800;font-family:var(--fe)}
+.nav-name span:first-child{color:#fff}
+.nav-name span:last-child{color:var(--blue)}
+.nav-right{display:flex;gap:12px;align-items:center}
+.nav-link{color:rgba(255,255,255,.55);font-size:11px;text-decoration:none;font-family:var(--fe);letter-spacing:.04em;text-transform:uppercase;transition:color .18s}
+.nav-link:hover{color:var(--blue)}
+.lang-toggle{display:flex;background:rgba(255,255,255,.1);border-radius:20px;padding:3px;gap:2px}
+.ltbtn{border:none;background:transparent;color:rgba(255,255,255,.5);font-size:11px;font-weight:700;padding:4px 10px;border-radius:16px;cursor:pointer;transition:all .18s;font-family:var(--fe)}
+.ltbtn.on{background:var(--grad);color:#fff}
+
+.hero{background:var(--navy);padding:52px 20px 44px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(74,159,232,.15),transparent 65%);pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(74,159,232,.15);border:1px solid rgba(74,159,232,.3);border-radius:4px;font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;margin-bottom:14px;font-family:var(--fe);position:relative;z-index:1}
+.hero-h1{font-family:var(--fe);font-size:clamp(28px,6vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.02em;margin-bottom:10px;position:relative;z-index:1}
+.hero-h1 .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.55);position:relative;z-index:1}
+
+.wrap{max-width:880px;margin:0 auto;padding:36px 16px 24px}
+.stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+@media(min-width:560px){.stat-cards{grid-template-columns:repeat(4,1fr)}}
+.scard{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:20px 16px;text-align:center;box-shadow:var(--sh)}
+.scard.featured{background:var(--navy);border-color:rgba(74,159,232,.25)}
+.scard-n{font-family:var(--fe);font-size:clamp(28px,5vw,44px);font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:5px}
+.scard-l{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;font-family:var(--fe)}
+.scard.featured .scard-l{color:rgba(255,255,255,.35)}
+
+.sec-wrap{max-width:880px;margin:0 auto;padding:0 16px 28px}
+.sec-tag{display:inline-block;background:var(--grad);color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:12px;font-family:var(--fe)}
+.sec-h2{font-family:var(--fe);font-size:clamp(20px,4vw,32px);font-weight:800;letter-spacing:-.01em;margin-bottom:5px;color:var(--navy)}
+.sec-sub{font-size:13px;color:var(--sub);margin-bottom:20px}
+
+.lb-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh2)}
+.lb-head{background:var(--navy);padding:13px 18px;display:flex;align-items:center;gap:10px}
+.lb-title{font-size:14px;font-weight:700;color:#fff}
+.lb-sub{font-size:11px;color:rgba(255,255,255,.35);margin-inline-start:auto;font-family:var(--fe)}
+.lb-row{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid var(--border2);transition:background .15s}
+.lb-row:hover{background:var(--paper)}
+.lb-row:last-child{border-bottom:none}
+.lb-rank{font-family:var(--fe);font-size:20px;font-weight:800;color:var(--border);width:28px;flex-shrink:0;text-align:center;direction:ltr}
+.lb-row:nth-child(1) .lb-rank{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lb-row:nth-child(2) .lb-rank{color:#94A3B8}
+.lb-row:nth-child(3) .lb-rank{color:#CD7F32}
+.lb-ai{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;font-family:var(--fe);flex-shrink:0}
+.lb-info{flex:1;min-width:0}
+.lb-title-t{font-size:13px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.lb-sig{font-size:11px;color:var(--sub)}
+.lb-score{text-align:center;flex-shrink:0}
+.lb-score-n{font-family:var(--fe);font-size:22px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;direction:ltr;line-height:1}
+.lb-score-max{font-size:10px;color:var(--dim);font-family:var(--fe)}
+.lb-empty{padding:28px;text-align:center;color:var(--sub);font-size:13px}
+.lb-loading{padding:20px;text-align:center;color:var(--sub);font-size:13px;font-family:var(--fe)}
+
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:480px){.dist-grid{grid-template-columns:repeat(3,1fr)}}
+.dist-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--rs);padding:15px 13px;box-shadow:var(--sh)}
+.dist-ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:var(--fe);margin-bottom:8px}
+.dist-name{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px;font-family:var(--fe)}
+.dist-count{font-family:var(--fe);font-size:24px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;direction:ltr}
+.dist-pct{font-size:10px;color:var(--sub);font-family:var(--fe)}
+.dist-bar{height:3px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
+.dist-fill{height:100%;background:var(--grad);border-radius:2px;width:0;transition:width 1s ease .3s}
+
+.cta-wrap{max-width:880px;margin:0 auto;padding:0 16px 52px}
+.cta-card{background:var(--navy);border-radius:var(--r);padding:36px 24px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--sh3)}
+.cta-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(74,159,232,.15),transparent 65%);pointer-events:none}
+.cta-seal{width:52px;height:52px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;font-family:var(--fe);margin:0 auto 16px;position:relative;z-index:1}
+.cta-h{font-family:var(--fe);font-size:clamp(20px,4vw,34px);font-weight:900;color:#fff;margin-bottom:8px;position:relative;z-index:1;letter-spacing:-.01em}
+.cta-h .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-s{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:20px;position:relative;z-index:1}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;border:none;border-radius:var(--rs);padding:13px 28px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--fa);text-decoration:none;transition:opacity .2s;position:relative;z-index:1;box-shadow:0 4px 16px rgba(107,53,217,.4)}
+body.en .cta-btn{font-family:var(--fe)}
+.cta-btn:hover{opacity:.9}
+
+footer{background:#0D0D2E;padding:20px;text-align:center}
+.footer-brand{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px}
+.footer-seal{width:24px;height:24px;background:var(--grad);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:#fff;font-family:var(--fe)}
+.footer-name{font-size:13px;font-weight:800;font-family:var(--fe)}
+.footer-name span:first-child{color:#fff}
+.footer-name span:last-child{color:var(--blue)}
+.footer-tag{font-size:10px;color:rgba(255,255,255,.2);font-family:var(--fe);letter-spacing:.08em;text-transform:uppercase}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.wrap,.sec-wrap,.cta-wrap{animation:fadeUp .5s ease both}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-seal">M</div>
+    <div class="nav-name"><span>Mind</span><span>Score</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link" id="nl-home">الرئيسية</a>
+    <a href="certificate.html" class="nav-link" id="nl-cert">شهادتي</a>
+    <div class="lang-toggle">
+      <button class="ltbtn on" id="lt-ar" onclick="setLang('ar')">ع</button>
+      <button class="ltbtn" id="lt-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag" id="h-tag">LIVE COMMUNITY STATS</div>
+  <h1 class="hero-h1" id="h-h1">إحصائيات <span class="grad-text">المجتمع</span></h1>
+  <p class="hero-sub" id="h-sub">بيانات حية من جميع المشاركين في MindScore</p>
+</div>
+
+<div class="wrap">
+  <div class="stat-cards">
+    <div class="scard featured"><div class="scard-n" id="sc-total">—</div><div class="scard-l" id="sc-total-l">إجمالي الشهادات</div></div>
+    <div class="scard"><div class="scard-n" id="sc-week">—</div><div class="scard-l" id="sc-week-l">هذا الأسبوع</div></div>
+    <div class="scard"><div class="scard-n" id="sc-avg">—</div><div class="scard-l" id="sc-avg-l">متوسط النتيجة</div></div>
+    <div class="scard"><div class="scard-n" id="sc-top">—</div><div class="scard-l" id="sc-top-l">أعلى نتيجة</div></div>
+  </div>
+</div>
+
+<div class="sec-wrap">
+  <span class="sec-tag">LEADERBOARD</span>
+  <h2 class="sec-h2" id="lb-h2">أعلى النتائج</h2>
+  <p class="sec-sub" id="lb-sub">المشاركون الأعلى نتيجةً إجمالية على MindScore</p>
+  <div class="lb-card">
+    <div class="lb-head">
+      <div class="lb-title" id="lb-title">المتصدرون</div>
+      <div class="lb-sub" id="lb-sub2">أعلى 10 نتائج</div>
+    </div>
+    <div id="lb-body"><div class="lb-loading" id="lb-loading">جاري التحميل...</div></div>
+  </div>
+</div>
+
+<div class="sec-wrap">
+  <span class="sec-tag">AI TOOLS</span>
+  <h2 class="sec-h2" id="td-h2">توزيع أدوات الذكاء الاصطناعي</h2>
+  <p class="sec-sub" id="td-sub">الأدوات الأكثر استخداماً بين مشاركي MindScore</p>
+  <div class="dist-grid" id="dist-grid"><div class="lb-loading">جاري التحميل...</div></div>
+</div>
+
+<div class="cta-wrap">
+  <div class="cta-card">
+    <div class="cta-seal">M</div>
+    <div class="cta-h" id="cta-h">هل أنت مستعد لاكتشاف <span class="grad-text">كيف تفكر؟</span></div>
+    <div class="cta-s" id="cta-s">انضم إلى مجتمع MindScore واحصل على شهادتك الآن</div>
+    <a href="index.html" class="cta-btn" id="cta-btn">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <span id="cta-btn-t">احصل على شهادتك</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand"><div class="footer-seal">M</div><div class="footer-name"><span>Mind</span><span>Score</span></div></div>
+  <div class="footer-tag">DISCOVER HOW YOU THINK</div>
+</footer>
+
+<script src="config.js"></script>
+<script>
+var uiLang = 'ar';
+
+var AI_STYLES = {
+  claude:{bg:'#D97757',color:'#fff'},chatgpt:{bg:'#10A37F',color:'#fff'},
+  gemini:{bg:'#4285F4',color:'#fff'},copilot:{bg:'#0078D4',color:'#fff'},
+  mistral:{bg:'#FF7000',color:'#fff'},grok:{bg:'#1DA1F2',color:'#fff'}
+};
+
+function loadStats() {
+  var req = new XMLHttpRequest();
+  req.open('GET', SUPABASE_URL+'/rest/v1/certificates?select=id,created_at,ai_tool,language,profile_title,cognitive_signature,total_score,dimension_labels&order=total_score.desc', true);
+  req.setRequestHeader('apikey', SUPABASE_KEY);
+  req.setRequestHeader('Authorization', 'Bearer '+SUPABASE_KEY);
+  req.onload = function() {
+    if (req.status===200) {
+      try { renderStats(JSON.parse(req.responseText)); }
+      catch(e) { showErr(e.message); }
+    } else { showErr('HTTP '+req.status); }
+  };
+  req.onerror=function(){ showErr('Network error'); };
+  req.send();
+}
+
+function renderStats(data) {
+  var total=data.length;
+  var weekAgo=new Date(Date.now()-7*24*60*60*1000).toISOString();
+  var week=data.filter(function(r){return r.created_at>weekAgo;}).length;
+  var scores=data.map(function(r){return r.total_score||0;}).filter(function(s){return s>0;});
+  var avg=scores.length?Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length):0;
+  var top=scores.length?Math.max.apply(null,scores):0;
+  document.getElementById('sc-total').textContent=total.toLocaleString();
+  document.getElementById('sc-week').textContent=week.toLocaleString();
+  document.getElementById('sc-avg').textContent=avg+'/30';
+  document.getElementById('sc-top').textContent=top+'/30';
+  renderLeaderboard(data.slice(0,10));
+  renderToolDist(data);
+}
+
+function renderLeaderboard(top) {
+  var body=document.getElementById('lb-body');
+  if (!top||!top.length){
+    body.innerHTML='<div class="lb-empty">'+(uiLang==='ar'?'لا توجد بيانات بعد — كن أول المشاركين!':'No data yet — be the first participant!')+'</div>';
+    return;
+  }
+  var html='';
+  for (var i=0;i<top.length;i++) {
+    var r=top[i];
+    var aiKey=(r.ai_tool||'').toLowerCase().replace(/[^a-z]/g,'');
+    var ais=AI_STYLES[aiKey]||{bg:'#666',color:'#fff'};
+    var sig=(r.cognitive_signature||[]).slice(0,2).join(' · ');
+    html+='<div class="lb-row">'+
+      '<div class="lb-rank">'+(i+1)+'</div>'+
+      '<div class="lb-ai" style="background:'+ais.bg+';color:'+ais.color+'">'+(r.ai_tool||'AI').substring(0,2)+'</div>'+
+      '<div class="lb-info"><div class="lb-title-t">'+(r.profile_title||'—')+'</div><div class="lb-sig">'+(sig||'')+'</div></div>'+
+      '<div class="lb-score"><div class="lb-score-n">'+(r.total_score||0)+'</div><div class="lb-score-max">/30</div></div>'+
+    '</div>';
+  }
+  body.innerHTML=html;
+}
+
+function renderToolDist(data) {
+  var counts={};
+  data.forEach(function(r){ var k=r.ai_tool||'Unknown'; counts[k]=(counts[k]||0)+1; });
+  var total=data.length||1;
+  var sorted=Object.keys(counts).sort(function(a,b){return counts[b]-counts[a];});
+  var html='';
+  for (var i=0;i<sorted.length;i++) {
+    var name=sorted[i]; var count=counts[name]; var pct=Math.round((count/total)*100);
+    var aiKey=name.toLowerCase().replace(/[^a-z]/g,'');
+    var ais=AI_STYLES[aiKey]||{bg:'#666',color:'#fff'};
+    html+='<div class="dist-card">'+
+      '<div class="dist-ico" style="background:'+ais.bg+';color:'+ais.color+'">'+name.substring(0,2)+'</div>'+
+      '<div class="dist-name">'+name+'</div>'+
+      '<div class="dist-count">'+count+'</div>'+
+      '<div class="dist-pct">'+pct+'% '+(uiLang==='ar'?'من المشاركين':'of participants')+'</div>'+
+      '<div class="dist-bar"><div class="dist-fill" style="width:'+pct+'%"></div></div>'+
+    '</div>';
+  }
+  document.getElementById('dist-grid').innerHTML=html||('<div class="lb-empty">'+(uiLang==='ar'?'لا توجد بيانات':'No data yet')+'</div>');
+}
+
+function showErr(msg) {
+  document.getElementById('lb-body').innerHTML='<div class="lb-empty" style="color:#DC2626">'+(uiLang==='ar'?'خطأ: ':'Error: ')+msg+'</div>';
+}
+
+var TX={
+  ar:{hTag:'LIVE COMMUNITY STATS',hH1:'إحصائيات <span class="grad-text">المجتمع</span>',hSub:'بيانات حية من جميع المشاركين في MindScore',scTotalL:'إجمالي الشهادات',scWeekL:'هذا الأسبوع',scAvgL:'متوسط النتيجة',scTopL:'أعلى نتيجة',lbH2:'أعلى النتائج',lbSub:'المشاركون الأعلى نتيجةً إجمالية على MindScore',lbTitle:'المتصدرون',lbSub2:'أعلى 10 نتائج',tdH2:'توزيع أدوات الذكاء الاصطناعي',tdSub:'الأدوات الأكثر استخداماً بين مشاركي MindScore',ctaH:'هل أنت مستعد لاكتشاف <span class="grad-text">كيف تفكر؟</span>',ctaS:'انضم إلى مجتمع MindScore واحصل على شهادتك الآن',ctaBtnT:'احصل على شهادتك',nlHome:'الرئيسية',nlCert:'شهادتي'},
+  en:{hTag:'LIVE COMMUNITY STATS',hH1:'<span class="grad-text">Community</span> Statistics',hSub:'Live data from all MindScore participants',scTotalL:'Total certificates',scWeekL:'This week',scAvgL:'Average score',scTopL:'Top score',lbH2:'Leaderboard',lbSub:'MindScore participants with the highest total scores',lbTitle:'Top performers',lbSub2:'Top 10 scores',tdH2:'AI Tool Distribution',tdSub:'Most used tools among MindScore participants',ctaH:'Ready to discover <span class="grad-text">how you think?</span>',ctaS:'Join the MindScore community and get your certificate now',ctaBtnT:'Get your certificate',nlHome:'Home',nlCert:'My Certificate'}
+};
+
+function setLang(l) {
+  uiLang=l;
+  var c=TX[l];
+  document.documentElement.setAttribute('lang',l);
+  document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');
+  document.body.classList.toggle('en',l==='en');
+  document.getElementById('lt-ar').classList.toggle('on',l==='ar');
+  document.getElementById('lt-en').classList.toggle('on',l==='en');
+  var plain=['h-tag','h-sub','sc-total-l','sc-week-l','sc-avg-l','sc-top-l','lb-h2','lb-sub','lb-title','lb-sub2','td-h2','td-sub','cta-s','cta-btn-t','nl-home','nl-cert'];
+  var keys=['hTag','hSub','scTotalL','scWeekL','scAvgL','scTopL','lbH2','lbSub','lbTitle','lbSub2','tdH2','tdSub','ctaS','ctaBtnT','nlHome','nlCert'];
+  for(var i=0;i<plain.length;i++){var el=document.getElementById(plain[i]);if(el&&c[keys[i]])el.textContent=c[keys[i]];}
+  document.getElementById('h-h1').innerHTML=c.hH1;
+  document.getElementById('cta-h').innerHTML=c.ctaH;
+}
+
+loadStats();
+</script>
+</body>
+</html>
