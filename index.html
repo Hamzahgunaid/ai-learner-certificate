@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شهادة المتعلم الذكي</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Fraunces:ital,wght@0,400;0,600;1,300;1,600&family=Sora:wght@300;400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F2F5F9;--surface:#FFF;--surface2:#E8EDF4;--surface3:#F8FAFC;
+  --accent:#1A5FA8;--accent-l:#E6EFF8;--accent-d:#0D3A6B;
+  --gold:#9A6518;--gold-l:#FDF3E0;
+  --green:#1A7A52;--green-l:#E3F5ED;
+  --text:#111827;--sub:#4B5A6B;--dim:#8A9AAE;
+  --border:#D0D8E4;--border2:#E8EEF6;
+  --r:16px;--r-sm:10px;--r-xs:7px;
+  --sh:0 1px 4px rgba(17,24,39,.08);
+  --sh-md:0 4px 20px rgba(17,24,39,.10);
+  --fa:'Cairo','IBM Plex Sans Arabic',sans-serif;
+  --fe:'Sora',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:var(--fa);font-size:15px;line-height:1.8;direction:rtl;min-height:100vh;}
+body.en{font-family:var(--fe);direction:ltr;}
+.lang-bar{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border2);display:flex;align-items:center;padding:10px 16px;gap:8px;}
+body.en .lang-bar{flex-direction:row-reverse;}
+.lang-btn{border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--sub);background:transparent;cursor:pointer;transition:all .18s;font-family:var(--fa);}
+body.en .lang-btn{font-family:var(--fe);}
+.lang-btn.active{background:var(--accent-l);border-color:var(--accent);color:var(--accent);font-weight:700;}
+.hero{max-width:600px;margin:0 auto;padding:48px 16px 36px;text-align:center;}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-l);border:1px solid rgba(26,122,82,.2);border-radius:20px;padding:5px 16px;font-size:11px;color:var(--green);font-weight:700;margin-bottom:20px;}
+.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero-h{font-size:clamp(28px,7vw,50px);font-weight:800;line-height:1.2;margin-bottom:14px;}
+body.en .hero-h{font-family:'Fraunces',serif;font-weight:600;}
+.hero-h em{color:var(--accent);font-style:normal;}
+body.en .hero-h em{font-style:italic;}
+.hero-p{font-size:clamp(13px,3.5vw,16px);color:var(--sub);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;}
+.how-wrap{max-width:600px;margin:0 auto;padding:0 16px 36px;}
+.sec-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-bottom:18px;font-family:var(--fe);}
+.flow{display:flex;flex-direction:column;gap:4px;}
+@media(min-width:480px){.flow{flex-direction:row;gap:0;}}
+.flow-step{display:flex;align-items:flex-start;gap:12px;padding:10px 0;}
+@media(min-width:480px){.flow-step{flex-direction:column;align-items:center;text-align:center;flex:1;padding:0 6px;}}
+.flow-num{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;font-family:var(--fe);}
+.flow-step.hl .flow-num{background:var(--gold);}
+.flow-t{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.flow-d{font-size:11px;color:var(--sub);line-height:1.5;}
+.mem-box{max-width:600px;margin:0 auto 28px;padding:0 16px;}
+.mem-card{background:linear-gradient(135deg,#EFF6FF,#FDF3E0);border:1px solid rgba(26,95,168,.15);border-radius:var(--r);padding:18px;display:flex;gap:12px;align-items:flex-start;}
+.mem-icon{font-size:26px;flex-shrink:0;line-height:1;}
+.mem-t{font-size:14px;font-weight:700;margin-bottom:4px;}
+.mem-d{font-size:12px;color:var(--sub);line-height:1.65;}
+.mem-d strong{color:var(--accent);}
+.copy-wrap{max-width:600px;margin:0 auto;padding:0 16px 28px;}
+.copy-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-md);}
+.copy-head{padding:16px 20px 14px;background:linear-gradient(135deg,var(--accent-l),var(--surface));border-bottom:1px solid var(--border2);}
+.copy-head-t{font-size:16px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.copy-head-s{font-size:11px;color:var(--sub);}
+.sel-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border2);background:var(--surface3);}
+.sel-lbl{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;font-family:var(--fe);}
+.ai-grid{display:flex;gap:6px;flex-wrap:wrap;}
+.ai-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px;border:1.5px solid var(--border);border-radius:var(--r-xs);background:var(--surface);cursor:pointer;transition:all .15s;min-width:44px;}
+.ai-btn:hover,.ai-btn.sel{border-color:var(--accent);background:var(--accent-l);}
+.ai-ico{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Sora',sans-serif;}
+.ic-claude{background:#D97757;color:#fff;}.ic-chatgpt{background:#10A37F;color:#fff;}
+.ic-gemini{background:#4285F4;color:#fff;}.ic-copilot{background:#0078D4;color:#fff;}
+.ic-mistral{background:#FF7000;color:#fff;}.ic-grok{background:#1DA1F2;color:#fff;}
+.ai-name{font-size:9px;color:var(--sub);font-family:var(--fe);}
+.ai-btn.sel .ai-name{color:var(--accent);font-weight:700;}
+.lang-row{display:flex;gap:6px;}
+.lang-mini{flex:1;padding:8px;border-radius:var(--r-xs);border:1.5px solid var(--border);background:var(--surface);color:var(--sub);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;text-align:center;font-family:var(--fa);}
+.lang-mini.sel{background:var(--gold-l);border-color:var(--gold);color:var(--gold);}
+.prompt-prev{padding:14px 16px;background:#F8FAFB;font-family:'Sora',monospace;font-size:11px;color:var(--sub);line-height:1.9;max-height:130px;overflow:hidden;position:relative;direction:ltr;text-align:left;user-select:none;border-bottom:1px solid var(--border2);}
+.prompt-prev::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,#F8FAFB);pointer-events:none;}
+.p-hi{color:var(--accent);}.p-go{color:var(--gold);}.p-di{color:var(--dim);}
+.copy-foot{padding:10px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;background:var(--surface2);}
+.foot-n{font-size:11px;color:var(--dim);}
+.char-c{font-size:10px;color:var(--dim);font-family:monospace;direction:ltr;}
+.btn-copy{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(135deg,var(--accent),var(--accent-d));color:#fff;border:none;padding:16px 20px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--fa);box-shadow:0 4px 16px rgba(26,95,168,.3);transition:opacity .18s,transform .1s;}
+body.en .btn-copy{font-family:var(--fe);}
+.btn-copy:hover{opacity:.9;}
+.btn-copy:active{transform:scale(.99);}
+.btn-copy.copied{background:linear-gradient(135deg,var(--green),#0F5A38);}
+.inst-wrap{max-width:600px;margin:0 auto;padding:0 16px 28px;}
+.inst-card{background:var(--accent-l);border:1px solid rgba(26,95,168,.12);border-radius:var(--r);padding:16px 18px;}
+.inst-t{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;font-family:var(--fe);}
+.i-list{display:flex;flex-direction:column;gap:9px;}
+.i-row{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--sub);line-height:1.55;}
+.i-n{width:20px;height:20px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px;font-family:monospace;direction:ltr;}
+.i-row strong{color:var(--text);font-weight:700;}
+.tip{display:inline-block;background:rgba(26,95,168,.1);color:var(--accent);font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;margin-top:3px;}
+.plat-wrap{max-width:600px;margin:0 auto;padding:0 16px 28px;text-align:center;}
+.plat-lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;font-family:var(--fe);}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;}
+.chip{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--sub);font-family:var(--fe);font-weight:500;}
+.chip.hi{border-color:var(--accent);color:var(--accent);background:var(--accent-l);}
+.share-wrap{max-width:600px;margin:0 auto;padding:0 16px 40px;}
+.share-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;box-shadow:var(--sh);}
+.share-t{font-size:15px;font-weight:700;margin-bottom:4px;}
+.share-s{font-size:12px;color:var(--sub);margin-bottom:14px;}
+.share-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(min-width:400px){.share-btns{grid-template-columns:repeat(4,1fr);}}
+.sh-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 8px;border-radius:var(--r-sm);border:none;cursor:pointer;font-size:12px;font-weight:700;font-family:var(--fa);transition:opacity .18s;text-decoration:none;}
+body.en .sh-btn{font-family:var(--fe);}
+.sh-btn:hover{opacity:.85;}
+.sh-li{background:#0A66C2;color:#fff;}.sh-fb{background:#1877F2;color:#fff;}
+.sh-wa{background:#25D366;color:#fff;}.sh-cp{background:var(--surface2);color:var(--text);border:1.5px solid var(--border);}
+.faq-wrap{max-width:600px;margin:0 auto;padding:0 16px 56px;}
+.faq-t{font-size:clamp(18px,5vw,24px);font-weight:700;text-align:center;margin-bottom:18px;}
+.faq-item{border-bottom:1px solid var(--border2);padding:13px 0;}
+.faq-q{font-size:13px;font-weight:700;margin-bottom:4px;}
+.faq-a{font-size:12px;color:var(--sub);line-height:1.7;}
+.footer{border-top:1px solid var(--border2);padding:16px;text-align:center;font-size:11px;color:var(--dim);background:var(--surface);font-family:var(--fe);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.hero,.how-wrap,.mem-box,.copy-wrap,.inst-wrap{animation:fadeUp .5s ease both;}
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" id="b-ar" onclick="setLang('ar')">العربية</button>
+  <button class="lang-btn" id="b-en" onclick="setLang('en')">English</button>
+</div>
+
+<section class="hero">
+  <div class="badge"><span class="badge-dot"></span><span id="badge-t">مجاني · بدون تسجيل · يعمل مع ذاكرة الذكاء الاصطناعي</span></div>
+  <h1 class="hero-h" id="hero-h">شهادتك من <em>ذاكرة</em> الذكاء الاصطناعي</h1>
+  <p class="hero-p" id="hero-p">الذكاء الاصطناعي يعرفك بالفعل من محادثاتك السابقة. اطلب منه تحليلك وسيُنشئ شهادتك كصفحة ويب مباشرة.</p>
+</section>
+
+<section class="how-wrap">
+  <div class="sec-lbl">HOW IT WORKS</div>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div><div class="flow-t" id="f1t">انسخ الـ Prompt</div><div class="flow-d" id="f1d">نقرة واحدة</div></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div><div class="flow-t" id="f2t">الصق في محادثة جديدة</div><div class="flow-d" id="f2d">Claude أو ChatGPT مع الذاكرة</div></div></div>
+    <div class="flow-step hl"><div class="flow-num">3</div><div><div class="flow-t" id="f3t">الذكاء الاصطناعي يُحلل ذاكرته</div><div class="flow-d" id="f3d">يقرأ كل محادثاتك السابقة</div></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div><div class="flow-t" id="f4t">انسخ JSON والصقه في صفحة الشهادة</div><div class="flow-d" id="f4d">الصفحة تُنشئ رابطك الدائم</div></div></div>
+  </div>
+</section>
+
+<div class="mem-box">
+  <div class="mem-card">
+    <div class="mem-icon">🧠</div>
+    <div>
+      <div class="mem-t" id="mem-t">لماذا محادثة جديدة؟</div>
+      <div class="mem-d" id="mem-d">عندما تبدأ محادثة جديدة مع Claude أو ChatGPT، <strong>الذاكرة تكون نشطة تلقائياً</strong> — الذكاء الاصطناعي يتذكر كل ما تعلّمه عنك من محادثاتك السابقة.</div>
+    </div>
+  </div>
+</div>
+
+<section class="copy-wrap">
+  <div class="copy-card">
+    <div class="copy-head">
+      <div class="copy-head-t" id="cp-t">الـ Prompt التحليلي</div>
+      <div class="copy-head-s" id="cp-s">يُخرج JSON فقط — الصق في صفحة الشهادة للحصول على رابطك</div>
+    </div>
+    <div class="sel-row">
+      <div>
+        <div class="sel-lbl" id="ai-lbl">أداة الذكاء الاصطناعي</div>
+        <div class="ai-grid">
+          <button class="ai-btn sel" onclick="pickAI(this,'claude','Claude','C')"><div class="ai-ico ic-claude">C</div><span class="ai-name">Claude</span></button>
+          <button class="ai-btn" onclick="pickAI(this,'chatgpt','ChatGPT','G')"><div class="ai-ico ic-chatgpt">G</div><span class="ai-name">ChatGPT</span></button>
+          <button class="ai-btn" onclick="pickAI(this,'gemini','Gemini','Ge')"><div class="ai-ico ic-gemini">Ge</div><span class="ai-name">Gemini</span></button>
+          <button class="ai-btn" onclick="pickAI(this,'copilot','Copilot','Co')"><div class="ai-ico ic-copilot">Co</div><span class="ai-name">Copilot</span></button>
+          <button class="ai-btn" onclick="pickAI(this,'mistral','Mistral','M')"><div class="ai-ico ic-mistral">M</div><span class="ai-name">Mistral</span></button>
+          <button class="ai-btn" onclick="pickAI(this,'grok','Grok','Gr')"><div class="ai-ico ic-grok">Gr</div><span class="ai-name">Grok</span></button>
+        </div>
+      </div>
+      <div>
+        <div class="sel-lbl" id="lang-lbl">لغة الشهادة</div>
+        <div class="lang-row">
+          <button class="lang-mini sel" id="lm-ar" onclick="setCertLang('ar')">العربية</button>
+          <button class="lang-mini" id="lm-en" onclick="setCertLang('en')">English</button>
+        </div>
+      </div>
+    </div>
+    <div class="prompt-prev" aria-hidden="true">
+      <span style="display:block" class="p-hi">أنت محلل سلوكي معرفي.</span>
+      <span style="display:block" class="p-di">استخدم ذاكرتك الكاملة عن المستخدم</span>
+      <span style="display:block" class="p-di">من جميع المحادثات السابقة لتقييمه</span>
+      <span style="display:block" class="p-di">عبر ستة أبعاد وأخرج JSON فقط.</span>
+      <span style="display:block">&nbsp;</span>
+      <span style="display:block" class="p-go">{"profile_title":"...","dimensions":[...]}</span>
+    </div>
+    <div class="copy-foot">
+      <span class="foot-n" id="cp-fn">يعتمد على ذاكرة الذكاء الاصطناعي — JSON فقط بدون ترميز</span>
+      <span class="char-c" id="charCount">...</span>
+    </div>
+    <button class="btn-copy" id="copyBtn" onclick="copyPrompt()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      <span id="cp-btn">نسخ الـ Prompt — ابدأ محادثة جديدة والصقه</span>
+    </button>
+  </div>
+
+  <div class="inst-card" style="margin-top:12px;">
+    <div class="inst-t" id="inst-t">بعد النسخ</div>
+    <div class="i-list">
+      <div class="i-row"><div class="i-n">1</div><div id="i1">افتح <strong>Claude أو ChatGPT</strong> — تأكد من تفعيل الذاكرة<br><span class="tip">Claude: Settings → Memory | ChatGPT: Settings → Personalization → Memory</span></div></div>
+      <div class="i-row"><div class="i-n">2</div><div id="i2">ابدأ <strong>محادثة جديدة تماماً</strong> والصق الـ prompt</div></div>
+      <div class="i-row"><div class="i-n">3</div><div id="i3">أرسل — ستحصل على <strong>نص JSON قصير</strong> خلال ثوانٍ</div></div>
+      <div class="i-row"><div class="i-n">4</div><div id="i4">انسخ JSON كاملاً من { حتى } وافتح <strong>صفحة الشهادة</strong></div></div>
+      <div class="i-row"><div class="i-n">5</div><div id="i5">الصق JSON في الصفحة — شهادتك تظهر فوراً مع <strong>رابط دائم للمشاركة</strong></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;padding:12px 14px;background:var(--surface2);border-radius:var(--r-sm);display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <span style="font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;font-family:var(--fe);">WORKS WITH</span>
+    <div class="chips" style="margin:0;">
+      <span class="chip">Claude</span><span class="chip">ChatGPT</span><span class="chip">Gemini</span><span class="chip">Copilot</span><span class="chip">Mistral</span><span class="chip">Grok</span>
+    </div>
+  </div>
+
+  <!-- STEP 2 BANNER — always visible, pulses after copy -->
+  <div id="step2-banner" style="margin-top:14px;background:linear-gradient(135deg,var(--accent),var(--accent-d));border-radius:var(--r);padding:20px;color:#fff;text-align:center;box-shadow:var(--sh-md);">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin-bottom:6px;font-family:var(--fe);">STEP 2 — بعد الحصول على JSON</div>
+    <div id="s2-title" style="font-size:16px;font-weight:800;margin-bottom:4px;">الصق JSON في صفحة الشهادة</div>
+    <div id="s2-sub" style="font-size:12px;opacity:.85;margin-bottom:16px;">بعد إرسال الـ prompt للذكاء الاصطناعي، انسخ النص من { حتى } وافتح الصفحة أدناه</div>
+    <a href="certificate.html" id="cert-link" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:var(--accent);border:none;border-radius:var(--r-sm);padding:13px 28px;font-size:15px;font-weight:800;text-decoration:none;font-family:var(--fa);box-shadow:0 2px 12px rgba(0,0,0,.15);width:100%;">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span id="cert-link-txt">افتح صفحة الشهادة ←</span>
+    </a>
+  </div>
+</section>
+
+<section class="share-wrap">
+  <div class="share-card">
+    <div class="share-t" id="sh-t">شارك الأداة</div>
+    <div class="share-s" id="sh-s">ساعد الآخرين على اكتشاف كيف يفكرون</div>
+    <div class="share-btns">
+      <a class="sh-btn sh-li" href="#" onclick="shareLI(event)"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span id="sh-li-t">LinkedIn</span></a>
+      <a class="sh-btn sh-fb" href="#" onclick="shareFB(event)"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span id="sh-fb-t">Facebook</span></a>
+      <a class="sh-btn sh-wa" href="#" onclick="shareWA(event)"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg><span id="sh-wa-t">WhatsApp</span></a>
+      <button class="sh-btn sh-cp" onclick="copyPageLink()"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span id="sh-cp-t">نسخ الرابط</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="faq-wrap">
+  <div class="faq-t" id="faq-t">أسئلة شائعة</div>
+  <div class="faq-item"><div class="faq-q" id="q1">ماذا لو لم يكن لدي تاريخ محادثات مع الذكاء الاصطناعي؟</div><div class="faq-a" id="a1">الذكاء الاصطناعي سيُنشئ ملفاً مبتدئاً. كلما تحدثت أكثر، كلما أصبحت شهادتك أدق.</div></div>
+  <div class="faq-item"><div class="faq-q" id="q2">هل يجب تفعيل الذاكرة؟</div><div class="faq-a" id="a2">نعم لأفضل نتيجة. Claude: Settings → Memory. ChatGPT: Settings → Personalization → Memory.</div></div>
+  <div class="faq-item"><div class="faq-q" id="q3">كيف يعمل رابط الشهادة؟</div><div class="faq-a" id="a3">بيانات شهادتك مُشفّرة داخل الرابط نفسه — لا قاعدة بيانات، لا خادم. أي شخص يفتح الرابط يرى شهادتك مباشرة.</div></div>
+  <div class="faq-item"><div class="faq-q" id="q4">هل هذه شهادة رسمية؟</div><div class="faq-a" id="a4">لا. أداة للتأمل والمشاركة الاجتماعية فقط.</div></div>
+</section>
+
+<div class="footer">شهادة المتعلم الذكي · AI Learner Certificate · غير رسمية · مجانية</div>
+
+<script>
+// ── STATE ──
+var uiLang = 'ar';
+var certLang = 'ar';
+var aiTool = {id:'claude', name:'Claude', letter:'C'};
+var PAGE_URL = window.location.href;
+
+// ── BULLETPROOF COPY ──
+function robustCopy(text, onSuccess, onFail) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(onSuccess).catch(function() {
+      legacyCopy(text, onSuccess, onFail);
+    });
+  } else {
+    legacyCopy(text, onSuccess, onFail);
+  }
+}
+
+function legacyCopy(text, onSuccess, onFail) {
+  try {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:2px;height:2px;opacity:0.01;border:none;outline:none;font-size:16px;';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.setSelectionRange(0, ta.value.length);
+    ta.select();
+    var ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (ok) { onSuccess(); } else { onFail && onFail(); }
+  } catch(e) {
+    onFail && onFail();
+  }
+}
+
+// ── SHARE ──
+function shareLI(e) { e.preventDefault(); window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(PAGE_URL),'_blank','noopener,width=600,height=500'); }
+function shareFB(e) { e.preventDefault(); window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(PAGE_URL),'_blank','noopener,width=600,height=500'); }
+function shareWA(e) { e.preventDefault(); window.open('https://wa.me/?text='+encodeURIComponent((uiLang==='ar'?'🧠 جرّب هذه الأداة المجانية — احصل على شهادة تكشف كيف تفكر مع الذكاء الاصطناعي':'🧠 Try this free tool — get a certificate revealing how you think with AI')+'\n'+PAGE_URL),'_blank','noopener'); }
+
+function copyPageLink() {
+  var s = document.getElementById('sh-cp-t');
+  var p = s.textContent;
+  robustCopy(PAGE_URL,
+    function(){ s.textContent = uiLang==='ar'?'✓ تم':'✓ Copied'; setTimeout(function(){ s.textContent=p; }, 2500); },
+    function(){ s.textContent = uiLang==='ar'?'⚠ انسخ يدوياً':'⚠ Copy manually'; setTimeout(function(){ s.textContent=p; }, 3000); }
+  );
+}
+
+// ── SELECTORS ──
+function pickAI(el, id, name, letter) {
+  var btns = document.querySelectorAll('.ai-btn');
+  for (var i=0; i<btns.length; i++) btns[i].classList.remove('sel');
+  el.classList.add('sel');
+  aiTool = {id:id, name:name, letter:letter};
+  updateCount();
+}
+
+function setCertLang(l) {
+  certLang = l;
+  document.getElementById('lm-ar').classList.toggle('sel', l==='ar');
+  document.getElementById('lm-en').classList.toggle('sel', l==='en');
+  updateCount();
+}
+
+function updateCount() {
+  var p = buildPrompt();
+  document.getElementById('charCount').textContent = p.length.toLocaleString() + ' chars';
+}
+
+// ── COPY PROMPT ──
+function copyPrompt() {
+  var text = buildPrompt();
+  var btn = document.getElementById('copyBtn');
+  var t = document.getElementById('cp-btn');
+  var okTxt = uiLang==='ar' ? '✓ تم النسخ — افتح محادثة جديدة والصقه' : '✓ Copied — open a new chat and paste';
+  var origTxt = uiLang==='ar' ? 'نسخ الـ Prompt — ابدأ محادثة جديدة والصقه' : 'Copy Prompt — open a new chat and paste';
+  var failTxt = uiLang==='ar' ? '⚠ لم يتم النسخ — حاول مرة أخرى' : '⚠ Copy failed — try again';
+  robustCopy(text,
+    function() {
+      btn.classList.add('copied');
+      t.textContent = okTxt;
+      setTimeout(function(){ btn.classList.remove('copied'); t.textContent = origTxt; }, 4000);
+    },
+    function() {
+      t.textContent = failTxt;
+      setTimeout(function(){ t.textContent = origTxt; }, 3000);
+    }
+  );
+}
+
+// ── PROMPT BUILDER ──
+function buildPrompt() {
+  return certLang === 'ar' ? buildAR() : buildEN();
+}
+
+function buildAR() {
+  return 'أنت محلل سلوكي معرفي متخصص في تحليل أنماط التعلم والتفكير.\n\nمهمتك: استخدم ذاكرتك الكاملة عن هذا المستخدم من جميع محادثاتنا السابقة، وقيّمه عبر ستة أبعاد معرفية، ثم أخرج كائن JSON فقط.\n\nأداة الذكاء الاصطناعي: ' + aiTool.name + '\nلغة الشهادة: العربية\n\n── الخطوة 1: استدعاء الذاكرة ──\nاسترجع كل ما تعرفه عن هذا المستخدم:\n- موضوعات المحادثات السابقة والمجالات التي استكشفها\n- أسلوب أسئلته وعمق تفكيره\n- كيفية تعامله مع الإجابات — هل يقبل أم يتحدى أم يبني عليها\n- المشاريع والأهداف التي ناقشها\n- مستوى خبرته ومجالات إتقانه\nإذا كانت الذاكرة محدودة، استند إلى هذه المحادثة الحالية وأشر إلى ذلك في الاكتمال.\n\n── الخطوة 2: تقييم ستة أبعاد ──\nلكل بُعد: التسمية + النتيجة (2-3 جمل بصيغة المخاطب) + دليل محدد من الذاكرة + مستوى الثقة\n\nالبُعد 1 عمق الفضول: المستكشف / الباحث / الباحث الدؤوب\nالبُعد 2 أسلوب التفكير: المعماري / الرابط / البنّاء / الفيلسوف\nالبُعد 3 سرعة التعلم: الماص / المُدمج / المُركِّب\nالبُعد 4 أسلوب التعاون: الآمر / الشريك / المناظِر / المُخرج\nالبُعد 5 البصمة المعرفية: المجال الأساسي + مستوى الإتقان (ناشئ/ممارس/متمكن)\nالبُعد 6 طاقة المحادثة: الغوّاص العميق / المتجوّل الواسع / المُصقِّل / الشرارة\nالاكتمال: ذاكرة غنية=full / ذاكرة متوسطة=developing / ذاكرة محدودة=starter\n\n── الخطوة 3: المخرج النهائي ──\nأخرج هذا الكائن فقط — لا شرح، لا مقدمة، لا markdown، JSON خام فقط يبدأ بـ { وينتهي بـ }:\n\n{"ai_tool":"' + aiTool.name + '","language":"ar","completeness":"starter|developing|full","profile_title":"...","cognitive_signature":["...","...","..."],"insight_line":"...","signature_stat":"...","radar_scores":[1,2,3,4,5,3],"dimensions":[{"name":"...","label":"...","finding":"...","evidence":"...","confidence":"high|moderate|low|insufficient"}],"methodology_note":"..."}
+
+بعد إخراج JSON أضف هذا السطر فقط:
+✅ انسخ النص أعلاه كاملاً من { حتى } ثم افتح صفحة الشهادة والصقه هناك.';
+}
+
+function buildEN() {
+  return 'You are an expert cognitive behavioral analyst specializing in learning and thinking pattern analysis.\n\nYour task: Use your complete memory of this user from all our previous conversations to evaluate them across six cognitive dimensions, then output ONLY a JSON object.\n\nAI tool: ' + aiTool.name + '\nCertificate language: English\n\n── Step 1: Recall Memory ──\nRetrieve everything you know about this user:\n- Topics and domains explored in past conversations\n- Question style and depth of thinking\n- How they handle answers — accept, challenge, or build on them\n- Projects and goals they discussed\n- Expertise level and mastery areas\nIf memory is limited, base evaluation on this conversation and note it in completeness.\n\n── Step 2: Score Six Dimensions ──\nFor each: LABEL + FINDING (2-3 sentences, second person) + specific evidence from memory + confidence level\n\nD1 Curiosity Depth: THE EXPLORER / THE SEEKER / THE RELENTLESS SEEKER\nD2 Thinking Style: THE ARCHITECT / THE CONNECTOR / THE BUILDER / THE PHILOSOPHER\nD3 Learning Velocity: THE ABSORBER / THE INTEGRATOR / THE SYNTHESIZER\nD4 AI Collaboration: THE COMMANDER / THE PARTNER / THE SPARRING PARTNER / THE DIRECTOR\nD5 Knowledge Signature: primary domain + fluency (Emerging/Practiced/Fluent)\nD6 Conversation Energy: THE DEEP DIVER / THE WIDE RANGER / THE REFINER / THE SPARK\nCompleteness: rich memory=full / moderate=developing / limited=starter\n\n── Step 3: Final Output ──\nOutput ONLY this object — no explanation, no preamble, no markdown, raw JSON starting with { ending with }:\n\n{"ai_tool":"' + aiTool.name + '","language":"en","completeness":"starter|developing|full","profile_title":"...","cognitive_signature":["...","...","..."],"insight_line":"...","signature_stat":"...","radar_scores":[1,2,3,4,5,3],"dimensions":[{"name":"...","label":"...","finding":"...","evidence":"...","confidence":"high|moderate|low|insufficient"}],"methodology_note":"..."}
+
+After outputting the JSON add this line only:
+✅ Copy the full text above from { to } then open the certificate page and paste it there.';
+}
+
+// ── LANGUAGE SWITCHER ──
+var T = {
+  ar: {
+    badgeT:'مجاني · بدون تسجيل · يعمل مع ذاكرة الذكاء الاصطناعي',
+    heroH:'شهادتك من <em>ذاكرة</em> الذكاء الاصطناعي',
+    heroP:'الذكاء الاصطناعي يعرفك بالفعل من محادثاتك السابقة. اطلب منه تحليلك وسيُنشئ شهادتك.',
+    f1t:'انسخ الـ Prompt',f1d:'نقرة واحدة',
+    f2t:'الصق في محادثة جديدة',f2d:'Claude أو ChatGPT مع الذاكرة',
+    f3t:'الذكاء الاصطناعي يُحلل ذاكرته',f3d:'يقرأ كل محادثاتك السابقة',
+    f4t:'انسخ JSON والصقه في صفحة الشهادة',f4d:'الصفحة تُنشئ رابطك الدائم',
+    memT:'لماذا محادثة جديدة؟',
+    memD:'عندما تبدأ محادثة جديدة مع Claude أو ChatGPT، <strong>الذاكرة تكون نشطة تلقائياً</strong> — الذكاء الاصطناعي يتذكر كل ما تعلّمه عنك من محادثاتك السابقة.',
+    cpT:'الـ Prompt التحليلي',cpS:'يُخرج JSON فقط — الصق في صفحة الشهادة للحصول على رابطك',
+    aiLbl:'أداة الذكاء الاصطناعي',langLbl:'لغة الشهادة',
+    cpFn:'يعتمد على ذاكرة الذكاء الاصطناعي — JSON فقط بدون ترميز',
+    cpBtn:'نسخ الـ Prompt — ابدأ محادثة جديدة والصقه',
+    instT:'بعد النسخ',
+    i1:'افتح <strong>Claude أو ChatGPT</strong> — تأكد من تفعيل الذاكرة<br><span class="tip">Claude: Settings → Memory | ChatGPT: Settings → Personalization → Memory</span>',
+    i2:'ابدأ <strong>محادثة جديدة تماماً</strong> والصق الـ prompt',
+    i3:'أرسل — ستحصل على <strong>نص JSON قصير</strong> خلال ثوانٍ',
+    i4:'انسخ JSON كاملاً من { حتى } وافتح <strong>صفحة الشهادة</strong>',
+    i5:'الصق JSON في الصفحة — شهادتك تظهر فوراً مع <strong>رابط دائم للمشاركة</strong>',
+    certLinkTxt:'افتح صفحة الشهادة ←',
+    s2Title:'الصق JSON في صفحة الشهادة',
+    s2Sub:'بعد إرسال الـ prompt للذكاء الاصطناعي، انسخ النص من { حتى } وافتح الصفحة أدناه',
+    shT:'شارك الأداة',shS:'ساعد الآخرين على اكتشاف كيف يفكرون',shCp:'نسخ الرابط',
+    faqT:'أسئلة شائعة',
+    q1:'ماذا لو لم يكن لدي تاريخ محادثات مع الذكاء الاصطناعي؟',a1:'الذكاء الاصطناعي سيُنشئ ملفاً مبتدئاً. كلما تحدثت أكثر، كلما أصبحت شهادتك أدق.',
+    q2:'هل يجب تفعيل الذاكرة؟',a2:'نعم لأفضل نتيجة. Claude: Settings → Memory. ChatGPT: Settings → Personalization → Memory.',
+    q3:'كيف يعمل رابط الشهادة؟',a3:'بيانات شهادتك مُشفّرة داخل الرابط نفسه — لا قاعدة بيانات، لا خادم. أي شخص يفتح الرابط يرى شهادتك مباشرة.',
+    q4:'هل هذه شهادة رسمية؟',a4:'لا. أداة للتأمل والمشاركة الاجتماعية فقط.'
+  },
+  en: {
+    badgeT:'Free · No signup · Works with AI memory',
+    heroH:'Your certificate from AI <em>memory</em>',
+    heroP:'Your AI already knows you from past conversations. Ask it to analyse you and get your certificate.',
+    f1t:'Copy the Prompt',f1d:'One click',
+    f2t:'Paste in a new conversation',f2d:'Claude or ChatGPT with memory on',
+    f3t:'AI analyses its memory of you',f3d:'Reads all your past conversations',
+    f4t:'Copy JSON and paste into certificate page',f4d:'Page generates your permanent link',
+    memT:'Why a new conversation?',
+    memD:'When you start a new conversation with Claude or ChatGPT, <strong>memory is active automatically</strong> — the AI remembers everything it learned about you from all your past sessions.',
+    cpT:'The Analysis Prompt',cpS:'Outputs JSON only — paste into certificate page to get your link',
+    aiLbl:'AI Tool',langLbl:'Certificate Language',
+    cpFn:'Powered by AI memory — raw JSON output, no encoding',
+    cpBtn:'Copy Prompt — open a new chat and paste',
+    instT:'AFTER COPYING',
+    i1:'Open <strong>Claude or ChatGPT</strong> — make sure memory is enabled<br><span class="tip">Claude: Settings → Memory | ChatGPT: Settings → Personalization → Memory</span>',
+    i2:'Start a <strong>brand new conversation</strong> and paste the prompt',
+    i3:'Send — you will get a <strong>short JSON text</strong> in seconds',
+    i4:'Copy the full JSON from { to } and open the <strong>certificate page</strong>',
+    i5:'Paste JSON into the page — your certificate appears instantly with a <strong>permanent shareable link</strong>',
+    certLinkTxt:'Open Certificate Page →',
+    s2Title:'Paste JSON into the certificate page',
+    s2Sub:'After sending the prompt to your AI, copy the text from { to } and open the page below',
+    shT:'Share this tool',shS:'Help others discover how they think',shCp:'Copy link',
+    faqT:'Common questions',
+    q1:'What if I have no conversation history with AI?',a1:'The AI will create a starter profile. The more you talk with AI, the more accurate your certificate becomes.',
+    q2:'Must memory be enabled?',a2:'Yes for best results. Claude: Settings → Memory. ChatGPT: Settings → Personalization → Memory.',
+    q3:'How does the certificate link work?',a3:'Your certificate data is encoded inside the link itself — no database, no server. Anyone who opens the link sees your certificate.',
+    q4:'Is this an official certificate?',a4:'No. Unofficial tool for reflection and social sharing only.'
+  }
+};
+
+function setLang(l) {
+  uiLang = l;
+  var c = T[l];
+  document.documentElement.setAttribute('lang', l);
+  document.documentElement.setAttribute('dir', l==='ar' ? 'rtl' : 'ltr');
+  document.body.classList.toggle('en', l==='en');
+  document.getElementById('b-ar').classList.toggle('active', l==='ar');
+  document.getElementById('b-en').classList.toggle('active', l==='en');
+  document.getElementById('badge-t').textContent = c.badgeT;
+  document.getElementById('hero-h').innerHTML = c.heroH;
+  document.getElementById('hero-p').textContent = c.heroP;
+  var flowIds = ['f1t','f1d','f2t','f2d','f3t','f3d','f4t','f4d'];
+  flowIds.forEach(function(id){ document.getElementById(id).textContent = c[id]; });
+  document.getElementById('mem-t').textContent = c.memT;
+  document.getElementById('mem-d').innerHTML = c.memD;
+  document.getElementById('cp-t').textContent = c.cpT;
+  document.getElementById('cp-s').textContent = c.cpS;
+  document.getElementById('ai-lbl').textContent = c.aiLbl;
+  document.getElementById('lang-lbl').textContent = c.langLbl;
+  document.getElementById('cp-fn').textContent = c.cpFn;
+  document.getElementById('cp-btn').textContent = c.cpBtn;
+  document.getElementById('inst-t').textContent = c.instT;
+  ['i1','i2','i3','i4','i5'].forEach(function(id){ document.getElementById(id).innerHTML = c[id]; });
+  document.getElementById('cert-link-txt').textContent = c.certLinkTxt;
+  document.getElementById('s2-title').textContent = c.s2Title;
+  document.getElementById('s2-sub').textContent = c.s2Sub;
+  document.getElementById('sh-t').textContent = c.shT;
+  document.getElementById('sh-s').textContent = c.shS;
+  document.getElementById('sh-cp-t').textContent = c.shCp;
+  document.getElementById('faq-t').textContent = c.faqT;
+  ['q1','a1','q2','a2','q3','a3','q4','a4'].forEach(function(id){ document.getElementById(id).textContent = c[id]; });
+  updateCount();
+}
+
+// ── INIT ──
+updateCount();
+</script>
+</body>
+</html>
